@@ -202,8 +202,36 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const array = [];
+  const arr = [];
+  const lowarr = [];
+  const upper = '┌┐\n';
+  const lower = '└┘\n';
+  if (width === 2 && height === 2) {
+    return upper + lower;
+  }
+  array.push('┌');
+  for (let i = 0; i < width - 2; i += 1) {
+    array.push('─');
+  }
+  array.push('┐\n');
+  const joined = array.join('');
+  for (let i = 0; i < height - 2; i += 1) {
+    arr.push('│');
+    for (let j = 0; j < width - 2; j += 1) {
+      arr.push(' ');
+    }
+    arr.push('│\n');
+  }
+  const joinedHeight = arr.join('');
+  lowarr.push('└');
+  for (let i = 0; i < width - 2; i += 1) {
+    lowarr.push('─');
+  }
+  lowarr.push('┘\n');
+  const fulljoined = lowarr.join('');
+  return joined + joinedHeight + fulljoined;
 }
 
 
@@ -279,8 +307,9 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const array = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return array.indexOf(value);
 }
 
 
