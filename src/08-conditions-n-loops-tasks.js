@@ -99,8 +99,11 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (a + b > c && a + c > b && c + b > a) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -167,8 +170,18 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  if (circle.center.y < point.y && circle.center.x === 0) {
+    return false;
+  }
+  if ((point.x - circle.center.x) * (point.x - circle.center.x)
+  + (point.y - circle.center.y) * (point.y - circle.center.y) <= circle.radius * circle.radius) {
+    return true;
+  }
+  if (circle.center.y === point.y && circle.center.x === point.x) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -183,8 +196,14 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    const c = str.charAt(i);
+    if (str.indexOf(c) === i && str.indexOf(c, i + 1) === -1) {
+      return c;
+    }
+  }
+  return null;
 }
 
 
@@ -347,8 +366,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
@@ -422,8 +441,83 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  const arr = [];
+  const array = [];
+  const arrthird = [];
+  const arrzero = [];
+  const arrayzero = [];
+  const arrayzer = [];
+  for (let i = 0; i <= position[0].length; i += 1) {
+    if (position[0][i] === 'X') {
+      arr.push('X');
+    }
+    if (position[0][i] === '0') {
+      arrzero.push('0');
+    }
+  }
+  for (let i = 0; i <= position[1].length; i += 1) {
+    if (position[1][i] === 'X') {
+      array.push('X');
+    }
+    if (position[1][i] === '0') {
+      arrayzero.push('0');
+    }
+  }
+  for (let i = 0; i <= position[2].length; i += 1) {
+    if (position[2][i] === 'X') {
+      arrthird.push('X');
+    }
+    if (position[2][i] === '0') {
+      arrayzer.push('0');
+    }
+  }
+  if (position[0][0] === 'X' && position[1][0] === 'X' && position[2][0] === 'X') {
+    return 'X';
+  }
+  if (position[0][1] === 'X' && position[1][1] === 'X' && position[2][1] === 'X') {
+    return 'X';
+  }
+  if (position[0][2] === 'X' && position[1][2] === 'X' && position[2][2] === 'X') {
+    return 'X';
+  }
+  if (position[0][0] === 'X' && position[1][1] === 'X' && position[2][2] === 'X') {
+    return 'X';
+  }
+  if (position[0][2] === 'X' && position[1][1] === 'X' && position[2][0] === 'X') {
+    return 'X';
+  }
+  if (position[0][0] === '0' && position[1][0] === '0' && position[2][0] === '0') {
+    return '0';
+  }
+  if (position[0][1] === '0' && position[1][1] === '0' && position[2][1] === '0') {
+    return '0';
+  }
+  if (position[0][2] === '0' && position[1][2] === '0' && position[2][2] === '0') {
+    return '0';
+  }
+  if (position[0][0] === '0' && position[1][1] === '0' && position[2][2] === '0') {
+    return '0';
+  }
+  if (position[0][2] === '0' && position[1][1] === '0' && position[2][0] === '0') {
+    return '0';
+  }
+  if (arrzero.length === 3) {
+    return '0';
+  }
+  if (arrayzero.length === 3) {
+    return '0';
+  }
+  if (arrayzer.length === 3) {
+    return '0';
+  }
+  if (arr.length === 3) {
+    return 'X';
+  }
+  if (array.length === 3) {
+    return 'X';
+  }
+  return arrthird.length === 3 ? 'X' : undefined;
 }
 
 
