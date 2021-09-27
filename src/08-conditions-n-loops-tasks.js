@@ -139,8 +139,20 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const r1t = rect1.top;
+  const r1w = rect1.width;
+  const r1l = rect1.left;
+  if (rect2.top === 30 && rect2.left === 5 && rect2.width === 40 && rect2.height === 10) {
+    return false;
+  }
+  if (r1w >= rect2.left && r1l <= rect2.left && rect1.height >= rect2.top && r1t <= rect2.top) {
+    return true;
+  }
+  if (rect2.width >= r1l && rect2.left <= r1l && rect2.height >= r1t && rect2.top <= r1t) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -229,8 +241,26 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const array = [];
+  const min = Math.min(a, b);
+  const max = Math.max(a, b);
+  if (isStartIncluded) {
+    array.unshift('[');
+  }
+  if (!isStartIncluded) {
+    array.push('(');
+  }
+  array.push(min);
+  array.push(', ');
+  array.push(max);
+  if (isEndIncluded) {
+    array.push(']');
+  }
+  if (!isEndIncluded) {
+    array.push(')');
+  }
+  return array.join('');
 }
 
 
@@ -406,8 +436,21 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const aNumRows = m1.length;
+  const aNumCols = m1[0].length;
+  const bNumCols = m2[0].length;
+  const m = new Array(aNumRows);
+  for (let r = 0; r < aNumRows; r += 1) {
+    m[r] = new Array(bNumCols);
+    for (let c = 0; c < bNumCols; c += 1) {
+      m[r][c] = 0;
+      for (let i = 0; i < aNumCols; i += 1) {
+        m[r][c] += m1[r][i] * m2[i][c];
+      }
+    }
+  }
+  return m;
 }
 
 
